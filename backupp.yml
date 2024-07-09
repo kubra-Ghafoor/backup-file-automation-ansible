@@ -1,0 +1,11 @@
+---
+- name: Backup test file
+  hosts: all
+  become: true
+
+  tasks:
+  - name: Backup test file
+    copy:
+      content: "{{ lookup('file', '/root/testfile.txt') }}"
+      dest: /root/testfile_{{ ansible_date_time.date }}.txt
+      mode: '0644'
